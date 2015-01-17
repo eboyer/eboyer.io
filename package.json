@@ -1,20 +1,19 @@
 {
-  "name": "boyerplate",
+  "name": "eboyer.io",
   "version": "1.0.0",
-  "description": "A simple starting point for new projects.",
+  "description": "Chicago based Product Designer & Developer",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eboyer/boyerplate.git"
+    "url": "https://github.com/eboyer/eboyer.io.git"
   },
   "keywords": [
     "HTML5",
-    "CSS3"
+    "CSS3",
+    "Designer",
+    "Developer"
   ],
-  "author": "Eric Boyer",
-  "bugs": {
-    "url": "https://github.com/eboyer/boyerplate/issues"
-  },
-  "homepage": "http://boyerplate.eboyer.io",
+  "author": "Eric Boyer"
+  "homepage": "http://eboyer.io",
   "dependencies" : {
     "bower" : "1.3.12"
   }
