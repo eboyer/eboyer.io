@@ -1,26 +1,62 @@
 /*
 ----------------------------------------------------------------
-  I M P O R T S
+  S E T U P
 ---------------------------------------------------------------- */
 @import "bourbon";
+@import "koi/imports/normalize";
 
-@import "koi/imports/_normalize";
-@import "koi/imports/_color_palette";
-@import "koi/imports/_utilities";
-@import "koi/imports/_grid";
-@import "koi/imports/_unitize";
+$primaryFontFamily: "adobe-garamond-pro", Georgia, serif;
+$secondaryFontFamily: "proxima-nova", Arial, sans-serif;
+
+@import "koi/imports/color_palette";
+$colorPrimary: #5a6aeb; //purple
+$colorSecondary: #2fe7be; //green
+
+$colorBodyCopy: #76829f; //light body copy
+$colorLtGrey: #e8ebf2; //light grey
+$colorLtrGrey: #f3f4f6; //light grey
+
+$largeBreak: 960px;
+$mediumBreak: 600px;
+
+@import "koi/imports/utilities";
+@import "koi/imports/animate";
+@import "animate";
+@import "koi/imports/typography";
+@import "koi/imports/grid";
+@import "koi/imports/unitize";
+
+/* Box sizing */
+html { box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit; }
+
+/* Set's the base typography sizes to be used with 'unitize' */
+html{
+  font-size: $root-font-size + px;
+  font-size: percentage($root-font-size/16);
+}
 
 body{
-  background: #2b2f3e;
-  color: #959cad;
+  background: #fff;
+  color: $colorBodyCopy;
+  font-family: $primaryFontFamily;
 }
-a{ color: #2fe7be; }
+a{ color: $colorPrimary; text-decoration: none; &:hover{ color: $colorPrimary; text-decoration: underline; } }
 
-.app{
-  padding: 100px;
-  text-align: center;
-}
+/*
+----------------------------------------------------------------
+  L O C A L
+---------------------------------------------------------------- */
+@import "typography";
 
-@media only screen and (max-width: 768px) {}
-@media only screen and (max-width: 480px) {}
+/*
+----------------------------------------------------------------
+  S T R U C T U R E
+---------------------------------------------------------------- */
+@import "structure/base";
+@import "structure/identity";
+@import "structure/content";
+
+// @media only screen and (max-width: 768px) {}
+// @media only screen and (max-width: 480px) {}
 

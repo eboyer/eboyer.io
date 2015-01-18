@@ -1,0 +1,46 @@
+.content{
+  width: 600px;
+
+  @media only screen and (max-width: $largeBreak) { padding: 0 40px; margin: 0 auto; }
+  @media only screen and (max-width: $mediumBreak) { width: auto; }
+}
+
+.block{
+  margin: 0 0 40px 0;
+  .block-title{ @include smallCaps; }
+}
+
+.block.intro{
+  p{
+    font-family: "proxima-nova",sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    font-size: rem(24);
+    line-height: 32px;
+    line-height: rem(32);
+  }
+
+  @media only screen and (max-width: $mediumBreak) {
+    display: none;
+  }
+}
+
+.sub-block{
+  margin: 0 0 20px 0;
+
+  .title{}
+  .company{}
+  .date{
+    .strike{ text-decoration: line-through; }
+    .unavailable{ color: #ff55a5; @include smallCaps; }
+  }
+  .roles{
+    li.strong{ font-weight: bold; }
+  }
+
+  @media only screen and (max-width: $mediumBreak) {
+    .details{ display: none; }
+  }
+
+}

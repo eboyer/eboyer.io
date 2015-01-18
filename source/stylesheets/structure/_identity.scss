@@ -1,0 +1,76 @@
+.identity{
+  position: fixed;
+  top: 0; left: 0;
+  padding: 40px 20px;
+  width: 280px;
+  height: 100%;
+  text-align: center;
+  background: $colorLtGrey;
+
+  .avatar{
+    width: 150px;
+    height: 150px;
+    @include border-top-radius(50%);
+    @include border-right-radius(50%);
+    @include border-bottom-radius(50%);
+    @include border-left-radius(50%);
+    border: 1px solid $colorBodyCopy;
+    overflow: hidden;
+    margin: 0 auto 15px auto;
+
+    img{
+      width: 150px;
+      height: 150px;
+      display: block;
+    }
+  }
+
+  .social{
+    padding: 10px 0;
+    width: 100%;
+    overflow: hidden;
+
+    ul{
+      list-style: none;
+      position: relative;
+      float: left;
+      left: 50%;
+      display: block;
+      margin: 0;
+
+      li{
+        position: relative;
+        float: left;
+        right: 50%;
+        display: block;
+        margin: 0 0 0 10px;
+        &:first-child{ margin-left: 0; }
+
+        a{
+          float: left;
+          width: 20px;
+          height: 20px;
+          @include nindent;
+          background-size: 20px 20px;
+        }
+
+        &.facebook{ a{ background: url(../images/webicon-facebook.svg); } }
+        &.twitter{ a{ background: url(../images/webicon-twitter.svg); } }
+        &.instagram{ a{ background: url(../images/webicon-instagram.svg); } }
+        &.linkedin{ a{ background: url(../images/webicon-linkedin.svg); } }
+        &.github{ a{ background: url(../images/webicon-github.svg); } }
+
+      }
+    }
+  }
+
+  @media only screen and (max-width: $largeBreak) {
+    position: static;
+    top: auto; left: auto;
+    padding: 20px 0;
+    width: auto;
+    height: auto;
+    margin: 0 0 20px 0;
+  }
+
+}
