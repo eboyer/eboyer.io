@@ -74,3 +74,13 @@
   }
 
 }
+
+.no-svg .identity{
+  .social ul li{
+    &.facebook{ a{ background: url(../images/webicon-facebook-s.png); } }
+    &.twitter{ a{ background: url(../images/webicon-twitter-s.png); } }
+    &.instagram{ a{ background: url(../images/webicon-instagram-s.png); } }
+    &.linkedin{ a{ background: url(../images/webicon-linkedin-s.png); } }
+    &.github{ a{ background: url(../images/webicon-github-s.png); } }
+  }
+}
