@@ -5,7 +5,7 @@
 }
 
 footer{
-  padding: 10px 0;
+  padding: 20px 0;
 
   p{
     @include smallCaps;
@@ -25,6 +25,10 @@ footer{
       @include animation-delay(1s);
       @include animation-iteration-count(infinite);
     }
+  }
+
+  @media only screen and (max-width: $mediumBreak) {
+    .source{ display: none; }
   }
 
 }
