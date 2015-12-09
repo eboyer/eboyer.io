@@ -2,12 +2,18 @@
   width: 600px;
 
   @media only screen and (max-width: $largeBreak) { padding: 0 40px; margin: 0 auto; }
-  @media only screen and (max-width: $mediumBreak) { width: auto; }
+  @media only screen and (max-width: $mediumBreak) { 
+    width: auto; 
+    padding: 0 15px;
+  }
 }
 
 .block{
   margin: 0 0 40px 0;
   .block-title{ @include smallCaps; }
+  @media only screen and (max-width: $mediumBreak) { 
+    margin: 0 0 20px 0;
+  }
 }
 
 .block.intro{
@@ -28,6 +34,8 @@
 
 .sub-block{
   margin: 0 0 20px 0;
+  border-bottom: 1px solid $colorLtGrey;
+  padding: 0 0 10px 0;
 
   .title{}
   .company{}
@@ -36,11 +44,35 @@
     .unavailable{ color: #ff55a5; @include smallCaps; }
   }
   .roles{
+    margin-bottom: 0;
+    li{
+      margin: 0 0 5px 0;
+    }
     li.strong{ font-weight: bold; }
+  }
+
+  &.current{
+    background: $colorLtrGrey;
+    padding: 20px 20px 10px 20px;
+    margin-left: -20px;
+    border-bottom: 0;
+  }
+
+  &:last-child{
+    margin-bottom: 0;
   }
 
   @media only screen and (max-width: $mediumBreak) {
     .details{ display: none; }
+    &.current{
+      margin-left: 0;
+    }
   }
+}
 
+.projects{
+  @include nav;
+  li{
+    margin: 0 0 15px 0;
+  }
 }
