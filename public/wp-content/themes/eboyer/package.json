@@ -1,0 +1,25 @@
+{
+  "name": "eboyer",
+  "version": "1.0.0",
+  "description": "Website for Eric Boyer, a Chicago based Production Designer & Developer.",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:eboyer/eboyer.io.git"
+  },
+  "author": "Eric Boyer",
+  "homepage": "https://eboyer.io",
+  "devDependencies": {
+    "autoprefixer": "*",
+    "cssnano": "*",
+    "grunt": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-imagemin": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-postcss": "*",
+    "grunt-sass": "*",
+    "pixrem": "*"
+  }
+}

@@ -1,0 +1,1 @@
+{"virtualbox":{"/var/www":{"mount_options":["dmode=777","fmode=666"],"guestpath":"/var/www","hostpath":"/Users/eboyer/Sites/eboyer.io","disabled":false,"__vagrantfile":true}}}

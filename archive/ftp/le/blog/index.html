@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <title>Let's Eat - Blog</title>
+  
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="author" content="Eric Boyer - Chicago, IL">
+    <meta name="viewport" content="width=device-width,maximum-scale=1.0">
+    
+    <!-- CSS -->
+    <!-- <link href="../stylesheets/app.css?1362026688" media="screen" rel="stylesheet" type="text/css" /> -->
+    <link href="http://www.letseatapp.com/stylesheets/app.css" media="screen" rel="stylesheet" type="text/css" />
+  
+    <!-- JS -->
+    <script src="http://www.letseatapp.com/javascripts/libs/modernizr-2.6.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      (function() {
+        var config = {
+          kitId: 'kgf5bkh',
+          scriptTimeout: 3000
+        };
+        var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/(\s|^)wf-loading(\s|$)/g," ");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script"),d=false;tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(d||a&&a!="complete"&&a!="loaded")return;d=true;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
+      })();
+    </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body lang="en">
+  <div class="wrap">
+    <header class="top">
+      <div class="row">
+        <div class="twelve column">
+          <h1><a href="/" class="logo">Let's Eat</a></h1>
+          <a href="http://www.twitter.com/letseatapp" class="btn secondary">@letseatapp</a>
+        </div>
+      </div>
+    </header><!-- /.top -->
+    <section class="content posts">
+      <div class="row">
+        <div class="nine column">
+          {block:Posts}
+    <article class="post">
+    {block:Text}
+        <div class="post-content text">
+            {block:Title}
+                <h3><a href="{Permadivnk}">{Title}</a></h3>
+            {/block:Title}
+
+            {Body}
+        </div>
+    {/block:Text}
+
+    {block:Photo}
+        <div class="post-content photo">
+            <img src="{PhotoURL-500}" alt="{PhotoAlt}"/>
+
+            {block:Caption}
+                <div class="caption">{Caption}</div>
+            {/block:Caption}
+        </div>
+    {/block:Photo}
+
+    {block:Panorama}
+        <div class="post-content panorama">
+            {divnkOpenTag}
+                <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>
+            {divnkCloseTag}
+
+            {block:Caption}
+                <div class="caption">{Caption}</div>
+            {/block:Caption}
+        </div>
+    {/block:Panorama}
+
+    {block:Photoset}
+        <div class="post-content photoset">
+            {Photoset-500}
+
+            {block:Caption}
+                <div class="caption">{Caption}</div>
+            {/block:Caption}
+        </div>
+    {/block:Photoset}
+
+    {block:Quote}
+        <div class="post-content quote">
+            "{Quote}"
+
+            {block:Source}
+                <div class="source">{Source}</div>
+            {/block:Source}
+        </div>
+    {/block:Quote}
+
+    {block:divnk}
+        <div class="post-content divnk">
+            <a href="{URL}" class="divnk" {Target}>{Name}</a>
+
+            {block:Description}
+                <div class="description">{Description}</div>
+            {/block:Description}
+        </div>
+    {/block:divnk}
+
+    {block:Chat}
+        <div class="post-content chat">
+            {block:Title}
+                <h3><a href="{Permadivnk}">{Title}</a></h3>
+            {/block:Title}
+
+            <ul class="chat">
+                {block:divnes}
+                    <div class="{Alt} user_{UserNumber}">
+                        {block:Label}
+                            <span class="label">{Label}</span>
+                        {/block:Label}
+
+                        {divne}
+                    </div>
+                {/block:divnes}
+            </ul>
+        </div>
+    {/block:Chat}
+
+    {block:Video}
+        <div class="post-content video">
+            {Video-500}
+
+            {block:Caption}
+                <div class="caption">{Caption}</div>
+            {/block:Caption}
+        </div>
+    {/block:Video}
+
+    {block:Audio}
+        <div class="post-content audio">
+            {AudioPlayerBlack}
+
+            {block:Caption}
+                <div class="caption">{Caption}</div>
+            {/block:Caption}
+        </div>
+    {/block:Audio}
+    </article>
+{/block:Posts}
+
+
+        </div>
+        <div class="three column sidebar">
+          <span class="devices">Find gluten-free food on any device, desktop or mobile.</span>
+          <ul class="badges">
+            <li class="ios">
+              Available in the App Store
+            </li>
+            <li class="google">
+              Get it on Google Play
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section><!-- /.content -->
+  </div><!-- /.wrap -->
+  <footer class="bottom">
+    <div class="row">
+      <div class="twelve column mobile-four">
+        <p><a href="http://www.veryhotlunch.com">Very Hot Lunch</a> makes things to help people.</p>
+      </div>
+    </div>
+  </footer><!-- /.bottom -->
+  <!-- JS -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="http://www.letseatapp.com/javascripts/vendor/jquery-1.8.0.min.js"><\/script>')</script>
+  <script src="http://www.letseatapp.com/javascripts/blog.js" type="text/javascript"></script>
+  
+  <script>
+    /* Google Analytics */
+    var _gaq=[['_setAccount','UA-38161541-2'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+    
+    /* Clicky Analytics */
+    var clicky_site_ids = clicky_site_ids || [];
+    clicky_site_ids.push(100576351);
+    (function() {
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = '//static.getclicky.com/js';
+      ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+    })();
+  </script>
+</body>
+</html>

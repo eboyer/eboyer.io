@@ -1,0 +1,88 @@
+/*
+ *     This file is part of 404 Error Monitor.
+ *     
+ *     404 Error Monitor is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ *     
+ *     404 Error Monitor is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU General Public License for more details.
+ *    
+ *     You should have received a copy of the GNU General Public License
+ *     along with 404 Error Monitor.  If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
+ */
+@CHARSET "UTF-8";
+
+.error_monitor-error-list .error_monitor-error-row {
+	
+}
+
+.error_monitor-error-list .error_monitor-error-row td {
+    padding: 5px;
+
+}
+
+.error_monitor-error-list .error_monitor-error-row td div{
+    color: #0088CC;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 505px;
+}
+
+.error_monitor-error-list tr td:last-child, .error_monitor-error-list tr th:last-child {
+	text-align: right;
+}
+
+#error_monitor-settings-form #clean_after, #error_monitor-settings-form #min_hit_count{
+	width: 50px;
+}
+
+.error_monitor_plugin .postbox .inside { padding-top: 5px; padding-left: 30px;}
+
+.error_monitor_plugin .postbox .inside li { list-style: square; }
+
+#error_monitor-export-form {
+    margin: 10px 0;
+}
+
+.error_monitor_plugin .error_monitor_plugin_pagination {
+	text-align: right;
+	border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    background: #fff none repeat scroll 0 0;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.error_monitor_plugin .error_monitor_plugin_pagination .displaying-num {
+	margin-right: 7px;
+	color: #555;
+}
+
+.error_monitor_plugin .error_monitor_plugin_pagination .pagination-item {
+    background: #ebebeb none repeat scroll 0 0;
+    border: 1px solid #e8e8e8;
+    color: #b4b4b4;
+    height: 16px;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    min-width: 17px;
+    padding: 5px;
+    text-align: center;
+    margin: 2px;
+}
+
+.error_monitor_plugin .error_monitor_plugin_pagination .current {
+    background: #fff none repeat scroll 0 0;
+    color: #32373c;
+}
+
+.error_monitor_plugin .error_monitor_plugin_pagination a {
+	text-decoration: none;
+}
