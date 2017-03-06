@@ -10,6 +10,7 @@
   "homepage": "https://eboyer.io",
   "devDependencies": {
     "autoprefixer": "*",
+    "bower": "^1.8.0",
     "cssnano": "*",
     "grunt": "*",
     "grunt-contrib-concat": "*",
@@ -20,6 +21,7 @@
     "grunt-contrib-watch": "*",
     "grunt-postcss": "*",
     "grunt-sass": "*",
-    "pixrem": "*"
+    "pixrem": "*",
+    "semantic-ui-css": "^2.2.9"
   }
 }

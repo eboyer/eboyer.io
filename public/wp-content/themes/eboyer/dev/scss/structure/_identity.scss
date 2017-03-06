@@ -1,0 +1,93 @@
+.identity{
+  position: fixed;
+  top: 0; left: 0;
+  padding: 40px 20px;
+  width: 280px;
+  height: 100%;
+  text-align: center;
+  background: $colorLtGrey;
+
+  .avatar{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid $colorBodyCopy;
+    overflow: hidden;
+    margin: 0 auto 10px auto;
+
+    img{
+      width: 150px;
+      height: 150px;
+      display: block;
+    }
+  }
+
+  h1{
+    margin: 0 0 5px 0;
+    a{
+      display: block;
+      color: #565656;
+      text-decoration: none;
+    }
+  }
+
+  .social{
+    padding: 10px 0;
+    width: 100%;
+    overflow: hidden;
+
+    ul{
+      list-style: none;
+      position: relative;
+      float: left;
+      left: 50%;
+      display: block;
+      margin: 0;
+      padding: 0;
+
+      li{
+        position: relative;
+        float: left;
+        right: 50%;
+        display: block;
+        margin: 0 0 0 10px;
+        &:first-child{ margin-left: 0; }
+
+        a{
+          float: left;
+          width: 20px;
+          height: 20px;
+          @include nindent;
+          background-size: 20px 20px;
+        }
+
+        &.facebook{ a{ background: url(../images/webicon-facebook.svg); } }
+        &.twitter{ a{ background: url(../images/webicon-twitter.svg); } }
+        &.instagram{ a{ background: url(../images/webicon-instagram.svg); } }
+        &.linkedin{ a{ background: url(../images/webicon-linkedin.svg); } }
+        &.github{ a{ background: url(../images/webicon-github.svg); } }
+
+      }
+    }
+  }
+
+  @media only screen and (max-width: $largeBreak) {
+    position: static;
+    top: auto; left: auto;
+    padding: 20px 0;
+    width: auto;
+    height: auto;
+    margin: 0 0 20px 0;
+  }
+
+}
+
+.no-svg .identity{
+  .social ul li{
+    &.facebook{ a{ background: url(../images/webicon-facebook-s.png); } }
+    &.twitter{ a{ background: url(../images/webicon-twitter-s.png); } }
+    &.instagram{ a{ background: url(../images/webicon-instagram-s.png); } }
+    &.linkedin{ a{ background: url(../images/webicon-linkedin-s.png); } }
+    &.github{ a{ background: url(../images/webicon-github-s.png); } }
+  }
+}

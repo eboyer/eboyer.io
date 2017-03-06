@@ -6,7 +6,7 @@ module.exports = function(grunt) {
         separator: ';'
       },
       dist: {
-        src: ['dev/js/vendor/jquery.fitvids.js', 'dev/js/vendor/isotope.pkgd.js', 'dev/js/app.js'],
+        src: ['dev/js/vendor/jquery.fitvids.js', 'dev/js/app.js'],
         dest: 'public/js/<%= pkg.name %>.js'
       }
     },
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: 'dev/images/',
-          src: ['**/*.{png,jpg,gif}'],
+          src: ['**/*.{png,jpg,gif,svg}'],
           dest: 'public/images/'
         }]
       }

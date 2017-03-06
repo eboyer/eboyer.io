@@ -44,8 +44,7 @@ function eboyer_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => esc_html__( 'Primary', 'eboyer' ),
-		'tools' => esc_html__( 'Tools', 'eboyer' ),
+		'primary' => esc_html__( 'Primary', 'eboyer' )
 	) );
 
 	/*

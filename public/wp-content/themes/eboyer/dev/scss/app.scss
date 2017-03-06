@@ -1,9 +1,53 @@
 @charset "utf-8";
+
+@import "vendor/animate";
 @import "vendor/font-awesome/font-awesome.scss";
+@import "../../bower_components/koi/imports/utilities";
+@import "../../bower_components/koi/imports/unitize";
+@import "../../node_modules/semantic-ui-css/semantic.min.css";
 
-html { box-sizing: border-box; }
-*, *:before, *:after { box-sizing: inherit; }
+@mixin smallCaps{
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-size: rem(12);
+  line-height: 12px;
+  line-height: rem(12);
+  letter-spacing: 0.08em;
+}
 
+$colorPrimary: #5a6aeb; //purple
+$colorSecondary: #2fe7be; //green
+$white: #ffffff; //white
+
+$colorBodyCopy: #76829f; //light body copy
+$colorLtGrey: #e8ebf2; //light grey
+$colorLtrGrey: #f3f4f6; //lighter grey
+
+$largeBreak: 960px;
+$mediumBreak: 600px;
 
 body {
+  background: #fff;
+  color: $colorBodyCopy;
+  cursor: url("../images/hotdog-small.png"), default;
 }
+
+a{
+  color: $colorPrimary;
+  text-decoration: none;
+  &:hover{ color: $colorPrimary; text-decoration: underline; }
+}
+
+.ui.header{
+  color: $colorBodyCopy;
+}
+
+/*
+----------------------------------------------------------------
+  S T R U C T U R E
+---------------------------------------------------------------- */
+@import "structure/base";
+@import "structure/identity";
+@import "structure/content";

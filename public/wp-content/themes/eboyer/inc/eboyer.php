@@ -1,4 +1,40 @@
 <?php
+add_action('init', 'assignments_init');
+function assignments_init()
+{
+    $assignments_labels = array(
+        'name' => _x('Assignments', 'post type general name'),
+        'singular_name' => _x('Assignment', 'post type singular name'),
+        'all_items' => __('All Assignments'),
+        'add_new' => _x('Add new Assignment', 'Assignment'),
+        'add_new_item' => __('Add new Assignment'),
+        'edit_item' => __('Edit Assignment'),
+        'new_item' => __('New Assignment'),
+        'view_item' => __('View Assignment'),
+        'search_items' => __('Search in Assignments'),
+        'not_found' =>  __('No Assignments found'),
+        'not_found_in_trash' => __('No Assignments found in trash'),
+        'parent_item_colon' => ''
+    );
+    $assignments_args = array(
+        'labels' => $assignments_labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'query_var' => true,
+        'rewrite' => true,
+        'capability_type' => 'post',
+        'hierarchical' => false,
+        'menu_position' => 5,
+        'supports' => array('title','custom-fields','thumbnail','editor'),
+        'has_archive' => false,
+        'show_in_rest' => true,
+        'rest_base' => 'assignments-api',
+        'rest_controller_class' => 'WP_REST_Posts_Controller'
+    );
+    register_post_type('assignments',$assignments_args);
+}
+
 add_action('init', 'lessons_init');
 function lessons_init()
 {
@@ -54,7 +90,8 @@ function lessons_init()
     );
 
     $courses_post_types = array(
-        'lessons'
+        'lessons',
+        'assignments'
     );
 
     register_taxonomy('courses',$courses_post_types,array(

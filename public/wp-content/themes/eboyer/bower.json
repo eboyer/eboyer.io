@@ -1,0 +1,7 @@
+{
+  "name": "eboyer.io",
+  "homepage": "https://eboyer.io",
+  "dependencies": {
+    "koi": "git@github.com:eboyer/koi.git#1.0.2"
+  }
+}
