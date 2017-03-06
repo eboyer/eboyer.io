@@ -56,6 +56,10 @@ get_header(); ?>
         <?php endif; ?>
         </ul>
 
+        <?php if( get_field('exit_ticket_url') ): ?>
+          <h3 class="ui header"><a href="<?php the_field('exit_ticket_url'); ?>" title="Exit Tickets">Exit Tickets</a></h3>
+        <?php endif; ?>
+
       </div>
     </article>
     <?php endwhile; // End of the loop. ?>
