@@ -4,7 +4,7 @@
 @import "vendor/font-awesome/font-awesome.scss";
 @import "../../bower_components/koi/imports/utilities";
 @import "../../bower_components/koi/imports/unitize";
-@import "../../node_modules/semantic-ui-css/semantic.min.css";
+@import "vendor/semantic-ui-css/semantic";
 
 @mixin smallCaps{
   font-style: normal;

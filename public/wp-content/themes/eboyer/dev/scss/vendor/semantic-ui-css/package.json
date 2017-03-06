@@ -1,0 +1,78 @@
+{
+  "_args": [
+    [
+      "semantic-ui-css",
+      "/Users/eboyer/Sites/eboyer.io/public/wp-content/themes/eboyer"
+    ]
+  ],
+  "_from": "semantic-ui-css@latest",
+  "_id": "semantic-ui-css@2.2.9",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/semantic-ui-css",
+  "_nodeVersion": "7.5.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/semantic-ui-css-2.2.9.tgz_1487706022157_0.27086117025464773"
+  },
+  "_npmUser": {
+    "email": "bot@semantic-ui.com",
+    "name": "semantic-bot"
+  },
+  "_npmVersion": "4.2.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "semantic-ui-css",
+    "raw": "semantic-ui-css",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/semantic-ui-css/-/semantic-ui-css-2.2.9.tgz",
+  "_shasum": "4098c755a0a8e2c7b3fa3c32a4bec47606825ada",
+  "_shrinkwrap": null,
+  "_spec": "semantic-ui-css",
+  "_where": "/Users/eboyer/Sites/eboyer.io/public/wp-content/themes/eboyer",
+  "author": {
+    "email": "jack@semantic-ui.com",
+    "name": "Jack Lukic"
+  },
+  "bugs": {
+    "url": "https://github.com/Semantic-Org/Semantic-UI/issues"
+  },
+  "dependencies": {
+    "jquery": "x.*"
+  },
+  "description": "CSS Only distribution of Semantic UI",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "4098c755a0a8e2c7b3fa3c32a4bec47606825ada",
+    "tarball": "https://registry.npmjs.org/semantic-ui-css/-/semantic-ui-css-2.2.9.tgz"
+  },
+  "gitHead": "7ad02f2fb9e50087fcb02bc1fba05e900488381c",
+  "homepage": "http://www.semantic-ui.com",
+  "license": "MIT",
+  "main": "semantic.js",
+  "maintainers": [
+    {
+      "name": "semantic-bot",
+      "email": "bot@semantic-ui.com"
+    }
+  ],
+  "name": "semantic-ui-css",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Semantic-Org/Semantic-UI-CSS.git"
+  },
+  "scripts": {},
+  "title": "Semantic UI",
+  "version": "2.2.9"
+}
