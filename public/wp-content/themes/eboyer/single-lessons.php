@@ -57,7 +57,7 @@ get_header(); ?>
         </ul>
 
         <?php if( get_field('exit_ticket_url') ): ?>
-          <h3 class="ui header"><a href="<?php the_field('exit_ticket_url'); ?>" title="Exit Tickets">Exit Tickets</a></h3>
+          <h3 class="ui header"><a href="<?php the_field('exit_ticket_url'); ?>" title="Exit Ticket">Exit Ticket</a></h3>
         <?php endif; ?>
 
       </div>
