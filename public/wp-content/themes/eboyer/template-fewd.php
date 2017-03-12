@@ -68,6 +68,7 @@ $assignments = new WP_Query($assignmentsArgs);
         <li>
           <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
         </li>
+      <?php wp_reset_postdata(); ?>
       <?php endwhile; ?>
       </ul>
       <?php endif; ?>
