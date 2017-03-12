@@ -13,6 +13,7 @@ get_header(); ?>
       </div>
     <article class="Page-block">
       <h2 class="ui header"><?php the_title(); ?></h2>
+      <?php the_content(); ?>
       <?php gravity_form(get_field('gravity_forms_id'), false, false, false, '', false); ?>
     </article>
     <?php endwhile; // End of the loop. ?>
