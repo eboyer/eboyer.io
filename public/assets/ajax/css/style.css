@@ -1,0 +1,51 @@
+html {
+	box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+.clearfix:after {
+	display: block;
+	height: 0;
+	clear: both;
+	line-height: 0;
+	content: ".";
+
+	visibility: hidden;
+}
+
+/* Your styles here */
+body{
+	font-size: 16px;
+	font-family: Helvetica, Arial, sans-serif;
+	color: #666;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+	font-family: Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	margin: 0 0 10px 0;
+}
+p{
+	font-family: Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 22px;
+	margin: 0 0 10px 0;
+}
+p:last-child{
+	margin-bottom: 0;
+}
+
+/* Layout */
+.site{
+	padding: 20px;
+}

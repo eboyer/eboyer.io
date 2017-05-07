@@ -1,0 +1,318 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.clearfix {
+	width: 100%;
+	background-color: #f0f4f4;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 24px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 10px;
+  z-index: 5;
+  margin: 0;
+}
+
+/*DESKTOP*/
+.map {
+  width: 43%;
+  margin: 0 auto;
+}
+
+.modal {
+  display: inline-block;
+  vertical-align: middle;
+  position: absolute;
+  top: 25%;
+  left: 30%;  
+  z-index: 2;
+  max-width: 500px;
+  box-sizing: border-box;
+  width: 90%;
+  background: #fff;
+  padding: 15px 30px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -o-border-radius: 8px;
+  -ms-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 10px #000;
+  -moz-box-shadow: 0 0 10px #000;
+  -o-box-shadow: 0 0 10px #000;
+  -ms-box-shadow: 0 0 10px #000;
+  box-shadow: 0 0 10px #000;
+  text-align: left
+}
+
+img {
+  border: 0;
+  width: 30px;
+  position: relative;
+  top: -80px;
+  left: 453px;
+}
+
+/*
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.container h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.container li {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 300;
+  font-size: 16px;
+  font-style: normal;
+}
+
+.stay {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 300;
+  font-size: 16px;
+  font-style: normal;
+  text-align: center;
+  margin: 20px;
+}
+
+.stay a {
+  text-decoration: none;
+  color: #000000;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.info {
+  padding: 10px;
+}
+*/
+.cities {
+  display: none;
+}
+
+#detroit:hover {
+  fill: black;
+}
+
+#ann-arbor:hover {
+  fill: black;
+}
+
+#grand-rapids:hover {
+  fill: black;
+}
+
+#holland:hover {
+  fill: black;
+}
+
+#kalamazoo:hover {
+  fill: black;
+}
+
+#traverse-city:hover {
+  fill: black;
+}
+
+#charlevoix:hover {
+  fill: black;
+}
+
+#mackinac-island:hover {
+  fill: black;
+}
+
+#munising:hover {
+  fill: black;
+}
+
+/*MOBILE*/
+@media screen and (max-width: 730px) {
+  svg {
+    display: none;
+  }
+
+  #modal {
+    display: none;
+  }
+
+  .cities {
+    display: block;
+  }
+
+  .cities {
+  	font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 18px;
+      text-align: center;
+      text-transform: uppercase;
+      margin: 0 auto;
+      text-shadow: 1px 1px #000000;
+  }
+
+  .cities ul {
+  	list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .cities ul li a {
+  	text-decoration: none;
+  	color: #ffffff;
+  	z-index: 4;
+  }
+
+  .cities ul li a:hover {
+  	text-decoration: underline;
+  	color: #ffffff;
+  	z-index: 4;
+  	text-shadow: 1px 1px #000000;
+  }
+
+  .detroit {
+    	width: 100%;
+    	height: 285px;
+  	background-image: url(../images/detroit/detroit_hero_color_boost.jpg);
+  	background-position: center;
+    	background-repeat: no-repeat;
+    	background-size: cover;
+    	background-color: #cccccc;
+    	overflow: hidden;
+    	text-align: center;
+    	padding-top: 133.5px;
+    	opacity: .8;
+  }
+
+  .ann-arbor {
+    	width: 100%;
+    	height: 285px;
+  	background-image: url(../images/ann_arbor/ann_arbor_hero_color_boost.jpg);
+  	background-position: center;
+    	background-repeat: no-repeat;
+    	background-size: cover;
+    	background-color: #cccccc;
+    	overflow: hidden;
+    	text-align: center;
+    	padding-top: 133.5px;
+    	opacity: .8;
+  }
+
+  .grand-rapids {
+    	width: 100%;
+    	height: 285px;
+  	background-image: url(../images/grand_rapids/grand-rapids_hero_color_boost.jpg);
+  	background-position: center;
+    	background-repeat: no-repeat;
+    	background-size: cover;
+    	background-color: #cccccc;
+    	overflow: hidden;
+    	text-align: center;
+    	padding-top: 133.5px;
+    	opacity: .8;
+  }
+
+  .kalamazoo {
+    	width: 100%;
+    	height: 285px;
+  	background-image: url(../images/kalamazoo/Kalamazoo_hero_color_boost.jpg);
+  	background-position: center;
+    	background-repeat: no-repeat;
+    	background-size: cover;
+    	background-color: #cccccc;
+    	overflow: hidden;
+    	text-align: center;
+    	padding-top: 133.5px;
+    	opacity: .8;
+  }
+
+  .holland {
+    	width: 100%;
+    	height: 285px;
+  	background-image: url(../images/holland/holland_hero_color_boost.jpg);
+  	background-position: center;
+    	background-repeat: no-repeat;
+    	background-size: cover;
+    	background-color: #cccccc;
+    	overflow: hidden;
+    	text-align: center;
+    	padding-top: 133.5px;
+    	opacity: .8;
+  }
+
+  .traverse-city {
+    	width: 100%;
+    	height: 285px;
+  	background-image: url(../images/traverse_city/traverse_city_hero_color_boost.jpg);
+  	background-position: center;
+    	background-repeat: no-repeat;
+    	background-size: cover;
+    	background-color: #cccccc;
+    	overflow: hidden;
+    	text-align: center;
+    	padding-top: 133.5px;
+    	opacity: .8;
+  }
+
+  .charlevoix {
+    	width: 100%;
+    	height: 285px;
+  	background-image: url(../images/charlevoix/charlevoix_hero_color_boost.jpg);
+  	background-position: center;
+    	background-repeat: no-repeat;
+    	background-size: cover;
+    	background-color: #cccccc;
+    	overflow: hidden;
+    	text-align: center;
+    	padding-top: 133.5px;
+    	opacity: .8;
+  }
+
+  .mackinac-island {
+    	width: 100%;
+    	height: 285px;
+  	background-image: url(../images/mackinac_island/mackinac_island_hero_color2_boost.jpg);
+  	background-position: center;
+    	background-repeat: no-repeat;
+    	background-size: cover;
+    	background-color: #cccccc;
+    	overflow: hidden;
+    	text-align: center;
+    	padding-top: 133.5px;
+    	opacity: .8;
+  }
+
+  .munising {
+    	width: 100%;
+    	height: 285px;
+  	background-image: url(../images/munising/munising_hero_color_boost.jpg);
+  	background-position: center;
+    	background-repeat: no-repeat;
+    	background-size: cover;
+    	background-color: #cccccc;
+    	overflow: hidden;
+    	text-align: center;
+    	padding-top: 133.5px;
+    	opacity: .8;
+  }
+}
+
+.pages {
+	display: none;
+}
