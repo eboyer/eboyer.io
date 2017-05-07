@@ -1,53 +1,37 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
- * CPAC_Column_Post_Page_Template
- *
  * @since 2.0
  */
-class CPAC_Column_Post_Formats extends CPAC_Column {
+class AC_Column_Post_Formats extends AC_Column {
 
-	/**
-	 * @see CPAC_Column::init()
-	 * @since 2.2.1
-	 */
-	public function init() {
-		parent::init();
-
-		// Properties
-		$this->properties['type'] = 'column-post_formats';
-		$this->properties['label'] = __( 'Post Format', 'codepress-admin-columns' );
+	public function __construct() {
+		$this->set_type( 'column-post_formats' );
+		$this->set_label( __( 'Post Format', 'codepress-admin-columns' ) );
 	}
 
-	/**
-	 * @see CPAC_Column::apply_conditional()
-	 * @since 2.0
-	 */
-	function apply_conditional() {
+	public function is_valid() {
 		return post_type_supports( $this->get_post_type(), 'post-formats' );
 	}
 
-	/**
-	 * @see CPAC_Column::get_value()
-	 * @since 2.0
-	 */
-	function get_value( $post_id ) {
-		if ( ! ( $format = $this->get_raw_value( $post_id ) ) ) {
-			return false;
-		}
+	public function get_value( $post_id ) {
+		$format = $this->get_raw_value( $post_id );
 
-		return esc_html( get_post_format_string( $format ) );
+		return $format ? esc_html( get_post_format_string( $format ) ) : __( 'Standard', 'codepress-admin-columns' );
 	}
 
-	/**
-	 * @see CPAC_Column::get_raw_value()
-	 * @since 2.0.3
-	 */
-	function get_raw_value( $post_id ) {
-		if ( ! ( $format = get_post_format( $post_id ) ) ) {
-			return false;
-		}
+	public function get_raw_value( $post_id ) {
+		$format = get_post_format( $post_id );
 
-		return $format;
+		return $format ? $format : false;
 	}
+
+	public function get_taxonomy() {
+		return 'post_format';
+	}
+
 }

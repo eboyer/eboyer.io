@@ -1,38 +1,27 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
- * CPAC_Column_User_Url
- *
  * @since 2.0
  */
-class CPAC_Column_User_Url extends CPAC_Column {
+class AC_Column_User_Url extends AC_Column {
 
-	/**
-	 * @see CPAC_Column::init()
-	 * @since 2.2.1
-	 */
-	public function init() {
-		parent::init();
-
-		$this->properties['type'] = 'column-user_url';
-		$this->properties['label'] = __( 'Url', 'codepress-admin-columns' );
+	public function __construct() {
+		$this->set_type( 'column-user_url' );
+		$this->set_label( __( 'Website', 'codepress-admin-columns' ) );
 	}
 
-	/**
-	 * @see CPAC_Column::get_value()
-	 * @since 2.0
-	 */
-	function get_value( $user_id ) {
+	public function get_value( $user_id ) {
 		return $this->get_raw_value( $user_id );
 	}
 
-	/**
-	 * @see CPAC_Column::get_raw_value()
-	 * @since 2.0.3
-	 */
-	function get_raw_value( $user_id ) {
+	public function get_raw_value( $user_id ) {
 		$userdata = get_userdata( $user_id );
 
 		return $userdata->user_url;
 	}
+
 }

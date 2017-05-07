@@ -1,39 +1,29 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
- * CPAC_Column_User_Nickname
- *
  * @since 2.0
  */
-class CPAC_Column_User_Nickname extends CPAC_Column {
+class AC_Column_User_Nickname extends AC_Column_Meta {
 
-	/**
-	 * @see CPAC_Column::init()
-	 * @since 2.2.1
-	 */
-	public function init() {
-		parent::init();
-
-
-		$this->properties['type'] = 'column-nickname';
-		$this->properties['label'] = __( 'Nickname', 'codepress-admin-columns' );
+	public function __construct() {
+		$this->set_type( 'column-nickname' );
+		$this->set_label( __( 'Nickname', 'codepress-admin-columns' ) );
 	}
 
-	/**
-	 * @see CPAC_Column::get_value()
-	 * @since 2.0
-	 */
-	function get_value( $user_id ) {
+	public function get_meta_key() {
+		return 'nickname';
+	}
+
+	public function get_value( $user_id ) {
 		return $this->get_raw_value( $user_id );
 	}
 
-	/**
-	 * @see CPAC_Column::get_raw_value()
-	 * @since 2.0.3
-	 */
-	function get_raw_value( $user_id ) {
-		$userdata = get_userdata( $user_id );
-
-		return $userdata->nickname;
+	public function get_raw_value( $user_id ) {
+		return $this->get_meta_value( $user_id, $this->get_meta_key() );
 	}
+
 }

@@ -1,53 +1,29 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
- * CPAC_Column_User_Registered
- *
  * @since 2.0
  */
-class CPAC_Column_User_Registered extends CPAC_Column {
+class AC_Column_User_Registered extends AC_Column {
 
-	/**
-	 * @see CPAC_Column::init()
-	 * @since 2.2.1
-	 */
-	public function init() {
-		parent::init();
-
-		// Properties
-		$this->properties['type'] = 'column-user_registered';
-		$this->properties['label'] = __( 'Registered', 'codepress-admin-columns' );
-
-		// Options
-		$this->options['date_format'] = '';
+	public function __construct() {
+		$this->set_type( 'column-user_registered' );
+		$this->set_label( __( 'Registered', 'codepress-admin-columns' ) );
 	}
 
-	/**
-	 * @see CPAC_Column::get_value()
-	 * @since 2.0
-	 */
-	function get_value( $user_id ) {
-		$user_registered = $this->get_raw_value( $user_id );
-
-		// GMT offset is used
-		return $this->get_date( get_date_from_gmt( $user_registered ), $this->get_option( 'date_format' ) );
+	public function get_value( $user_id ) {
+		return $this->get_formatted_value( get_date_from_gmt( $this->get_raw_value( $user_id ) ) );
 	}
 
-	/**
-	 * @see CPAC_Column::get_raw_value()
-	 * @since 2.0.3
-	 */
-	function get_raw_value( $user_id ) {
-		$userdata = get_userdata( $user_id );
-
-		return $userdata->user_registered;
+	public function get_raw_value( $user_id ) {
+		return get_userdata( $user_id )->user_registered;
 	}
 
-	/**
-	 * @see CPAC_Column::display_settings()
-	 * @since 2.0
-	 */
-	function display_settings() {
-		$this->display_field_date_format();
+	public function register_settings() {
+		$this->add_setting( new AC_Settings_Column_Date( $this ) );
 	}
+
 }

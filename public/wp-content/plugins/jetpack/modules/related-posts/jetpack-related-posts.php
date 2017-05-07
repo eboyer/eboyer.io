@@ -2,6 +2,8 @@
 class Jetpack_RelatedPosts {
 	const VERSION = '20150408';
 	const SHORTCODE = 'jetpack-related-posts';
+	private static $instance = null;
+	private static $instance_raw = null;
 
 	/**
 	 * Creates and returns a static instance of Jetpack_RelatedPosts.
@@ -9,20 +11,18 @@ class Jetpack_RelatedPosts {
 	 * @return Jetpack_RelatedPosts
 	 */
 	public static function init() {
-		static $instance = NULL;
-
-		if ( ! $instance ) {
+		if ( ! self::$instance ) {
 			if ( class_exists('WPCOM_RelatedPosts') && method_exists( 'WPCOM_RelatedPosts', 'init' ) ) {
-				$instance = WPCOM_RelatedPosts::init();
+				self::$instance = WPCOM_RelatedPosts::init();
 			} else {
-				$instance = new Jetpack_RelatedPosts(
+				self::$instance = new Jetpack_RelatedPosts(
 					get_current_blog_id(),
 					Jetpack_Options::get_option( 'id' )
 				);
 			}
 		}
 
-		return $instance;
+		return self::$instance;
 	}
 
 	/**
@@ -31,20 +31,18 @@ class Jetpack_RelatedPosts {
 	 * @return Jetpack_RelatedPosts
 	 */
 	public static function init_raw() {
-		static $instance = NULL;
-
-		if ( ! $instance ) {
+		if ( ! self::$instance_raw ) {
 			if ( class_exists('WPCOM_RelatedPosts') && method_exists( 'WPCOM_RelatedPosts', 'init_raw' ) ) {
-				$instance = WPCOM_RelatedPosts::init_raw();
+				self::$instance_raw = WPCOM_RelatedPosts::init_raw();
 			} else {
-				$instance = new Jetpack_RelatedPosts_Raw(
+				self::$instance_raw = new Jetpack_RelatedPosts_Raw(
 					get_current_blog_id(),
 					Jetpack_Options::get_option( 'id' )
 				);
 			}
 		}
 
-		return $instance;
+		return self::$instance_raw;
 	}
 
 	protected $_blog_id_local;
@@ -127,7 +125,13 @@ class Jetpack_RelatedPosts {
 		if ( isset( $_GET['relatedposts'] ) ) {
 			$excludes = array();
 			if ( isset( $_GET['relatedposts_exclude'] ) ) {
-				$excludes = explode( ',', $_GET['relatedposts_exclude'] );
+				if ( is_string( $_GET['relatedposts_exclude'] ) ) {
+					$excludes = explode( ',', $_GET['relatedposts_exclude'] );
+				} elseif ( is_array( $_GET['relatedposts_exclude'] ) ) {
+					$excludes = array_values( $_GET['relatedposts_exclude'] );
+				}
+
+				$excludes = array_unique( array_filter( array_map( 'absint', $excludes ) ) );
 			}
 
 			$this->_action_frontend_init_ajax( $excludes );
@@ -294,14 +298,14 @@ EOT;
 
 		return $this->_options;
 	}
-	
+
 	public function get_option( $option_name ) {
 		$options = $this->get_options();
-		
+
 		if ( isset( $options[ $option_name ] ) ) {
 			return $options[ $option_name ];
 		}
-		
+
 		return false;
 	}
 
@@ -770,10 +774,11 @@ EOT;
 		if ( !empty( $args['exclude_post_ids'] ) && is_array( $args['exclude_post_ids'] ) ) {
 			foreach ( $args['exclude_post_ids'] as $exclude_post_id) {
 				$exclude_post_id = (int)$exclude_post_id;
-
+				$excluded_post_ids = array();
 				if ( $exclude_post_id > 0 )
-					$filters[] = array( 'not' => array( 'term' => array( 'post_id' => $exclude_post_id ) ) );
+					$excluded_post_ids[] = $exclude_post_id;
 			}
+			$filters[] = array( 'not' => array( 'terms' => array( 'post_id' => $excluded_post_ids ) ) );
 		}
 
 		return $filters;
@@ -1404,7 +1409,7 @@ EOT;
 	 * @return bool
 	 */
 	protected function _enabled_for_request() {
-		$enabled = is_single() 
+		$enabled = is_single()
 			&&
 				! is_admin()
 			&&

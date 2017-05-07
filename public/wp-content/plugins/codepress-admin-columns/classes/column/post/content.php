@@ -1,47 +1,25 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
- * CPAC_Column_Post_Content
- *
  * @since 2.4
  */
-class CPAC_Column_Post_Content extends CPAC_Column {
+class AC_Column_Post_Content extends AC_Column {
 
-	/**
-	 * @see CPAC_Column::init()
-	 * @since 2.4
-	 */
-	public function init() {
-		parent::init();
-
-		$this->properties['type'] = 'column-content';
-		$this->properties['label'] = __( 'Content', 'codepress-admin-columns' );
-		$this->properties['object_property'] = 'post_content';
-
-		$this->options['excerpt_length'] = 30;
+	public function __construct() {
+		$this->set_type( 'column-content' );
+		$this->set_label( __( 'Content', 'codepress-admin-columns' ) );
 	}
 
-	/**
-	 * @see CPAC_Column::get_value()
-	 * @since 2.4
-	 */
-	public function get_value( $post_id ) {
-		return $this->get_shortened_string( $this->get_raw_value( $post_id ), $this->get_option( 'excerpt_length' ) );
-	}
-
-	/**
-	 * @see CPAC_Column::get_raw_value()
-	 * @since 2.4
-	 */
 	public function get_raw_value( $post_id ) {
 		return get_post_field( 'post_content', $post_id, 'raw' );
 	}
 
-	/**
-	 * @see CPAC_Column::display_settings()
-	 * @since 2.4
-	 */
-	public function display_settings() {
-		$this->display_field_excerpt_length();
+	public function register_settings() {
+		$this->add_setting( new AC_Settings_Column_WordLimit( $this ) );
 	}
+
 }

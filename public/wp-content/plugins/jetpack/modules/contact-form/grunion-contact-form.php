@@ -273,10 +273,17 @@ class Grunion_Contact_Form_Plugin {
 			$widget = isset( $GLOBALS['wp_registered_widgets'][ $this->current_widget_id ] ) ? $GLOBALS['wp_registered_widgets'][ $this->current_widget_id ] : false;
 
 			if ( $sidebar && $widget && isset( $widget['callback'] ) ) {
+				// prevent PHP notices by populating widget args
+				$widget_args = array(
+					'before_widget' => '',
+					'after_widget' => '',
+					'before_title' => '',
+					'after_title' => '',
+				);
 				// This is lamer - no API for outputting a given widget by ID
 				ob_start();
 				// Process the widget to populate Grunion_Contact_Form::$last
-				call_user_func( $widget['callback'], array(), $widget['params'][0] );
+				call_user_func( $widget['callback'], $widget_args, $widget['params'][0] );
 				ob_end_clean();
 			}
 		} else {
@@ -1995,21 +2002,22 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 		 * @param string|array $to Array of valid email addresses, or single email address.
 		 */
 		$to = (array) apply_filters( 'contact_form_to', $to );
+		$reply_to_addr = $to[0]; // get just the address part before the name part is added
+
 		foreach ( $to as $to_key => $to_value ) {
 			$to[ $to_key ] = Grunion_Contact_Form_Plugin::strip_tags( $to_value );
+			$to[ $to_key ] = self::add_name_to_address( $to_value );
 		}
 
 		$blog_url = parse_url( site_url() );
 		$from_email_addr = 'wordpress@' . $blog_url['host'];
 
-		$reply_to_addr = $to[0];
 		if ( ! empty( $comment_author_email ) ) {
 			$reply_to_addr = $comment_author_email;
 		}
 
 		$headers = 'From: "' . $comment_author . '" <' . $from_email_addr . ">\r\n" .
-					'Reply-To: "' . $comment_author . '" <' . $reply_to_addr . ">\r\n" .
-					'Content-Type: text/html; charset="' . get_option( 'blog_charset' ) . '"';
+					'Reply-To: "' . $comment_author . '" <' . $reply_to_addr . ">\r\n";
 
 		// Build feedback reference
 		$feedback_time  = current_time( 'mysql' );
@@ -2085,7 +2093,7 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 
 		array_push(
 			$message,
-			"", // Empty line left intentionally
+			"<br />",
 			'<hr />',
 			__( 'Time:', 'jetpack' ) . ' ' . $time . '<br />',
 			__( 'IP Address:', 'jetpack' ) . ' ' . $comment_author_IP . '<br />',
@@ -2095,18 +2103,18 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 		if ( is_user_logged_in() ) {
 			array_push(
 				$message,
-				'',
 				sprintf(
-					__( 'Sent by a verified %s user.', 'jetpack' ),
+					'<p>' . __( 'Sent by a verified %s user.', 'jetpack' ) . '</p>',
 					isset( $GLOBALS['current_site']->site_name ) && $GLOBALS['current_site']->site_name ?
 						$GLOBALS['current_site']->site_name : '"' . get_option( 'blogname' ) . '"'
 				)
 			);
 		} else {
-			array_push( $message, __( 'Sent by an unverified visitor to your site.', 'jetpack' ) );
+			array_push( $message, '<p>' . __( 'Sent by an unverified visitor to your site.', 'jetpack' ) . '</p>' );
 		}
 
-		$message = join( $message, "\n" );
+		$message = join( $message, '' );
+
 		/**
 		 * Filters the message sent via email after a successfull form submission.
 		 *
@@ -2117,6 +2125,9 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 		 * @param string $message Feedback email message.
 		 */
 		$message = apply_filters( 'contact_form_message', $message );
+
+		// This is called after `contact_form_message`, in order to preserve back-compat
+		$message = self::wrap_message_in_html_tags( $message );
 
 		update_post_meta( $post_id, '_feedback_email', $this->addslashes_deep( compact( 'to', 'message' ) ) );
 
@@ -2139,6 +2150,8 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 			wp_schedule_event( time() + 250, 'daily', 'grunion_scheduled_delete' );
 		}
 
+		add_filter( 'wp_mail_content_type', __CLASS__ . '::get_mail_content_type' );
+		add_action( 'phpmailer_init', __CLASS__ . '::add_plain_text_alternative' );
 		if (
 			$is_spam !== true &&
 			/**
@@ -2169,6 +2182,8 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 		) { // don't send spam by default.  Filterable.
 			wp_mail( $to, "{$spam}{$subject}", $message, $headers );
 		}
+		remove_filter( 'wp_mail_content_type', __CLASS__ . '::get_mail_content_type' );
+		remove_action( 'phpmailer_init', __CLASS__ . '::add_plain_text_alternative' );
 
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 			return self::success_message( $post_id, $this );
@@ -2200,6 +2215,91 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 
 		wp_safe_redirect( $redirect );
 		exit;
+	}
+
+	/**
+	 * Add a display name part to an email address
+	 *
+	 * SpamAssassin doesn't like addresses in HTML messages that are missing display names (e.g., `foo@bar.org`
+	 * instead of `"Foo Bar" <foo@bar.org>`.
+	 *
+	 * @param string $address
+	 *
+	 * @return string
+	 */
+	function add_name_to_address( $address ) {
+		// If it's just the address, without a display name
+		if ( is_email( $address ) ) {
+			$address = sprintf( '"%s" <%s>', $address, $address );
+		}
+
+		return $address;
+	}
+
+	/**
+	 * Get the content type that should be assigned to outbound emails
+	 *
+	 * @return string
+	 */
+	static function get_mail_content_type() {
+		return 'text/html';
+	}
+
+	/**
+	 * Wrap a message body with the appropriate in HTML tags
+	 *
+	 * This helps to ensure correct parsing by clients, and also helps avoid triggering spam filtering rules
+	 *
+	 * @param string $body
+	 *
+	 * @return string
+	 */
+	static function wrap_message_in_html_tags( $body ) {
+		// Don't do anything if the message was already wrapped in HTML tags
+		// That could have be done by a plugin via filters
+		if ( false !== strpos( $body, '<html' ) ) {
+			return $body;
+		}
+
+		$html_message = sprintf(
+			// The tabs are just here so that the raw code is correctly formatted for developers
+			// They're removed so that they don't affect the final message sent to users
+			str_replace( "\t", '',
+				"<!doctype html>
+				<html xmlns=\"http://www.w3.org/1999/xhtml\">
+				<body>
+
+				%s
+
+				</body>
+				</html>"
+			),
+			$body
+		);
+
+		return $html_message;
+	}
+
+	/**
+	 * Add a plain-text alternative part to an outbound email
+	 *
+	 * This makes the message more accessible to mail clients that aren't HTML-aware, and decreases the likelihood
+	 * that the message will be flagged as spam.
+	 *
+	 * @param PHPMailer $phpmailer
+	 */
+	static function add_plain_text_alternative( $phpmailer ) {
+		// Add an extra break so that the extra space above the <p> is preserved after the <p> is stripped out
+		$alt_body = str_replace( '<p>', '<p><br />', $phpmailer->Body );
+
+		// Convert <br> to \n breaks, to preserve the space between lines that we want to keep
+		$alt_body = str_replace( array( '<br>', '<br />' ), "\n", $alt_body );
+
+		// Convert <hr> to an plain-text equivalent, to preserve the integrity of the message
+		$alt_body = str_replace( array( "<hr>", "<hr />" ), "----\n", $alt_body );
+
+		// Trim the plain text message to remove the \n breaks that were after <doctype>, <html>, and <body>
+		$phpmailer->AltBody = trim( strip_tags( $alt_body ) );
 	}
 
 	function addslashes_deep( $value ) {

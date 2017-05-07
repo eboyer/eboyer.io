@@ -1,17 +1,28 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
- * CPAC_Column_Media_Dimensions
- *
  * @since 2.0
  */
-class CPAC_Column_Media_Dimensions extends CPAC_Column {
+class AC_Column_Media_Dimensions extends AC_Column_Media_Meta {
 
-	public function init() {
-		parent::init();
+	public function __construct() {
+		parent::__construct();
 
-		$this->properties['type'] = 'column-dimensions';
-		$this->properties['label'] = __( 'Dimensions', 'codepress-admin-columns' );
+		$this->set_type( 'column-dimensions' );
+		$this->set_label( __( 'Dimensions', 'codepress-admin-columns' ) );
+	}
+
+	public function get_surface( $id ) {
+		$meta = $this->get_raw_value( $id );
+
+		$height = ! empty( $meta['height'] ) ? $meta['height'] : 0;
+		$width = ! empty( $meta['width'] ) ? $meta['width'] : 0;
+
+		return $height * $width;
 	}
 
 	public function get_value( $id ) {
@@ -26,7 +37,4 @@ class CPAC_Column_Media_Dimensions extends CPAC_Column {
 		return $value;
 	}
 
-	public function get_raw_value( $id ) {
-		return get_post_meta( $id, '_wp_attachment_metadata', true );
-	}
 }
