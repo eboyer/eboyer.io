@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<link rel="stylesheet" href="css/style.css">
+		<meta charset="UTF-8">
+		<title>Page Title</title>
+	</head>
+	<body>
+<style>
+
+body {background-color: ##749ace}
+	h1{ text-align: center; }
+		h2{text-align: center;}
+			h3{text-align: center;}
+				h4{text-align: center;}
+
+
+	<!-- Page content goes here -->
+
+	<h1><strong>ABOUT ME</strong></h1>
+
+	<p>I'm Bill Ryan, I work in private banking currently, I studied Finance and Economics in college along with demolishing people in pickup basaketball at the Rec Center.</p>
+
+	<h2> <strong>EXPERIENCE</strong></h2>
+
+	<ul>
+
+		<li>I have long been fascinated with the Finance world, and have been working in the industry since I was in college.  I began learning about various financial products after my freshman year of college working for the Options Clearing Corporation, and currently work at Cortland Global focusing on syndicated loans.</li>
+
+		</ul>
+
+	<h3><strong>RELEVANT WORK EXPERIENCE</strong></h3>
+
+
+		<ol>
+
+		<li><strong>National Operations Intern</strong> &lowbar; responsible for implementation of the Dodd-Frank Act into the National Operations department with Options Clearing Corporation.  Assisted with the creation of the record keeping system that the Options Clearing Corporation currently uses, successfully housing information on over 180 different clients.</li>
+
+		<li><strong>Risk Management Intern</strong> &lowbar; worked with Porfolio Management team that was responsible for monitoring the exposure of our customers in the various markets they traded in.  Became familiar with the Bloomberg Terminal and the ThompsonOne software.</li>
+
+		<li><strong>Follett Corporation</strong> &lowbar; worked in the billing and finance department, this job sucked. </li>
+
+		<li><strong>Cortland Global</strong> &lowbar; currently work on 50+ syndicated loan deals, work with both domestic and foreign companies who seek funding on deals ranging between 1 and 450 million dollars.  Working with our tech department in the creation of an in-house software to manage our business a lot more efficiently.</li>
+
+		</ol>
+
+		<h4><strong>EDUCATION</strong></h4>
+
+			<ul>
+				<li><em>General Assembly </em>&lowbar; Currently</li>
+				<li><em>DePaul University </em>&lowbar; Graduated in 2016</li>
+
+
+				<h5><strong>Skills/Interests</strong></h5>
+						<ul>
+						<li>Basketball</li
+						<li>Euchre</li>
+						<li>Hip-Hop</li>
+						<li>Writing</li>
+</style>
+	</body>
+</html>

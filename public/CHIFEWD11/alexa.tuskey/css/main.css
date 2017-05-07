@@ -1,0 +1,239 @@
+/* Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+/* 
+    SITE COLORS:
+
+    White - #ffffff
+    Orange - #F79429
+    Green -  #ADCE63
+    Purple - #7B318C
+*/
+
+/* ==========================================================================
+   Global Styles
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: white;
+    text-align: center;
+
+}
+
+.logo {
+    position: absolute;
+    left: 20px;
+    top: 30px;
+    width: 10%;
+}   
+
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+h1 {
+    font-size: 40px;
+    line-height: 50px;
+    font-weight: 700;
+}
+
+p {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn {
+    font-size: 22px;
+    line-height: 22px;
+    font-weight: 700;
+    padding: 5px 10px;
+    height: 60px;
+    width: 100%;
+    border: 3px solid white;
+    margin: 10px auto;
+    display: block;
+    background-color: rgba(255, 255, 255, 0);
+    transition: background-color 0.13s ease-out;
+}
+
+.btn:hover {
+    background-color: #F79429;
+    transition: background-color 0.13s ease-in;
+}
+
+.js-splash-btn {
+    width: 40%;
+}
+
+.btn-retake {
+    width: 40%;
+}
+
+.btn-retake:hover {
+    background-color: white;
+    color: #F79429;
+}
+
+
+#purple:hover {
+    background-color: #7B318C;
+    transition: background-color 0.13s ease-in;
+}
+
+#green:hover {
+      background-color: #ADCE63;
+      transition: background-color 0.13s ease-in;
+}   
+
+/* ==========================================================================
+   Containers
+   ========================================================================== */
+
+html {
+    position: relative;
+}
+
+body {
+    background-image: url(../img/splash-bg.png);
+    background-size: cover;
+    height: 100vh;
+}
+
+.container {
+    width: 40%;
+    margin: 180px auto 0;
+
+}
+
+.result-container {
+  width: 40%;
+  margin: 110px auto 0;
+}
+
+.btn-container {
+    margin-top: 50px;
+}
+
+/* ==========================================================================
+   Images
+   ========================================================================== */
+img {
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Pages
+   ========================================================================== */
+
+
+.results-page {
+  display: none;
+}
+
+.questions-page {
+  display: none;
+}
+
+
+/* ==========================================================================
+   Media Queries for Responsive Design.
+   ========================================================================== */
+
+@media screen and (max-width: 960px) {
+
+  .container {
+    width: 50%;
+    margin: 160px auto 0;
+  }
+
+  .js-splash-btn {
+    width: 80%;
+  }
+
+  .btn-retake {
+    width: 100%;
+  }
+
+ } 
+
+@media screen and (max-width: 722px) {
+
+  .logo {
+    width: 80px;
+  }
+
+ }
+
+ @media screen and (max-width: 615px) {
+
+  h1 {
+    font-size: 30px;
+    line-height: 38px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 26px;
+  }
+
+  .btn {
+    font-size: 20px;
+  }
+
+ }
+
+
+@media screen and (max-width: 530px) {
+
+  .result-container {
+    width: 70%;
+    margin: 110px auto 0;
+  }
+
+  .container {
+    width: 70%;
+    margin: 160px auto 0;
+  }
+
+  .js-splash-btn {
+    width: 100%;
+  }
+
+ }
+
+
+ @media screen and (max-width: 400px) {
+
+  .container {
+    width: 80%;
+  }
+
+ }

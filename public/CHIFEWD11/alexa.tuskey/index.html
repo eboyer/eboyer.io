@@ -1,0 +1,62 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Meet Your Match Quiz</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/animate.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+    <img class="logo" src="img/mym-white.png" onClick="window.location.reload()">
+        <div class="splash-page">
+            <div class="container">
+                <h1>Are You Ready to Meet Your Match?</h1>
+                <p>The Meet Your Match® Adoption Program is a research-based program that pairs distinct pet personalities with adopters whose personality and lifestyle fit them best. Good matches help make strong bonds, and bonding is the key to successful adoptions.</p>
+                <div class="btn-container">
+                    <button class="btn js-splash-btn">Start Quiz!</button>
+                </div>
+            </div>
+        </div>
+
+    <div class="questions-page">
+        <div class="container">
+            <h1 class="question"></h1>
+            <div class="answer-list">
+                <!--  Letter A  -->
+                <button class="btn" id="purple"></button>
+
+                <!--  Letter B  -->
+                <button class="btn" id="orange"></button>
+
+                <!--  Letter C  -->
+                <button class="btn" id="green"></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="results-page">
+        <div class="result-container">
+            <img id="resultImage" src="">
+            <h1 class="name"></h1>
+            <p class="description"></p>
+                <div class="btn-container">
+                    <button class="btn btn-retake" onClick="window.location.reload()">Retake Quiz</button>
+                </div>
+        </div>
+    </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
