@@ -77,7 +77,7 @@ get_header(); ?>
           <?php if( have_rows('final_projects') ): ?>
             <?php  while ( have_rows('final_projects') ) : the_row(); ?>
               <li class="resource">
-                <a href="<?php the_sub_field("url"); ?>"><?php the_sub_field("student_name"); ?></a>
+                <?php the_sub_field("student_name"); ?> [<a href="<?php the_sub_field("url"); ?>">Site</a>] [<a href="<?php the_sub_field("code_url"); ?>">Code</a>] 
               </li>
             <?php endwhile; ?>
           <?php endif; ?>
