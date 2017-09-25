@@ -8,7 +8,14 @@ global $post;
 $assignmentsArgs=array(
   'post_type'=> 'assignments',
   'orderby' => 'menu_order',
-  'posts_per_page'   => -1
+  'posts_per_page'   => -1,
+  'tax_query' => array(
+    array(
+      'taxonomy' => 'courses',
+      'field'    => 'slug',
+      'terms'    => get_the_title(),
+    ),
+  ),
 );
 $assignments = new WP_Query($assignmentsArgs);
 ?>
@@ -58,7 +65,7 @@ $assignments = new WP_Query($assignmentsArgs);
           </li>
         <?php endif; ?>
       </ul>
-      <div class="lesson-sub">* Denotes that Eric will be out of class for this lesson.</div>
+      <div class="lesson-sub">* Denotes that Eric will be out of class or office hours for this lesson.</div>
     </div>
     <div class="Page-block-section">
       <h3 class="ui header">Assignments</h3>
