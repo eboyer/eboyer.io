@@ -9,7 +9,7 @@ $childPagesArgs=array(
   'post_type'=> 'page',
   'post_parent' => $post->ID,
   'orderby' => 'menu_order',
-  'posts_per_page'   => -1
+  'posts_per_page' => -1
 );
 $child_pages = new WP_Query($childPagesArgs);
 ?>
