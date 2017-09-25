@@ -333,7 +333,7 @@ class Jetpack_Network {
 					}
 
 					wp_safe_redirect( $url );
-					break;
+					exit;
 
 				case 'subsitedisconnect':
 					Jetpack::log( 'subsitedisconnect' );
@@ -417,8 +417,11 @@ class Jetpack_Network {
 		// Save the secrets in the subsite so when the wpcom server does a pingback it
 		// will be able to validate the connection
 		$secrets = $jp->generate_secrets( 'register' );
-		@list( $secret_1, $secret_2, $secret_eol ) = explode( ':', $secrets );
-		if ( empty( $secret_1 ) || empty( $secret_2 ) || empty( $secret_eol ) || $secret_eol < time() ) {
+		if (
+			empty( $secrets['secret_1'] ) ||
+			empty( $secrets['secret_2']  ) ||
+			empty( $secrets['exp'] )
+		) {
 			return new Jetpack_Error( 'missing_secrets' );
 		}
 
@@ -439,6 +442,8 @@ class Jetpack_Network {
 		$stat_id = $stat_options = isset( $stats_options['blog_id'] ) ? $stats_options['blog_id'] : null;
 		$user_id = get_current_user_id();
 
+		$tracks_identity = jetpack_tracks_get_identity( $user_id );
+
 		/**
 		 * Both `state` and `user_id` need to be sent in the request, even though they are the same value.
 		 * Connecting via the network admin combines `register()` and `authorize()` methods into one step,
@@ -455,13 +460,16 @@ class Jetpack_Network {
 				'gmt_offset'            => $gmt_offset,
 				'timezone_string'       => (string) get_option( 'timezone_string' ),
 				'site_name'             => (string) get_option( 'blogname' ),
-				'secret_1'              => $secret_1,
-				'secret_2'              => $secret_2,
+				'secret_1'              => $secrets['secret_1'],
+				'secret_2'              => $secrets['secret_2'],
 				'site_lang'             => get_locale(),
 				'timeout'               => $timeout,
 				'stats_id'              => $stat_id, // Is this still required?
 				'user_id'               => $user_id,
-				'state'                 => $user_id
+				'state'                 => $user_id,
+				'_ui'                   => $tracks_identity['_ui'],
+				'_ut'                   => $tracks_identity['_ut'],
+				'jetpack_version'       => JETPACK__VERSION
 			),
 			'headers' => array(
 				'Accept' => 'application/json',

@@ -2,8 +2,8 @@
 /*
 Plugin Name: Category Order and Taxonomy Terms Order
 Plugin URI: http://www.nsp-code.com
-Description: Category Order and Taxonomy Terms Order
-Version: 1.4.9
+Description: Order Categories and all custom taxonomies terms (hierarchically) and child terms using a Drag and Drop Sortable javascript capability. 
+Version: 1.5.2.2
 Author: Nsp-Code
 Author URI: http://www.nsp-code.com
 Author Email: electronice_delphi@yahoo.com
@@ -32,19 +32,7 @@ Domain Path: /languages/
                     $query = "ALTER TABLE $wpdb->terms ADD `term_order` INT( 4 ) NULL DEFAULT '0'";
                     $result = $wpdb->query($query); 
                 }
-            
-            $options = get_option('tto_options');
-            
-            $defaults = array (
-                                                 'autosort'         =>  '1',
-                                                 'adminsort'        =>  '1',
-                                                 'capability'       =>  'install_plugins'
-                                            );
-                        
-            // Parse incoming $args into an array and merge it with $defaults
-            $options = wp_parse_args( $options, $defaults ); 
-                
-            update_option('tto_options', $options);
+
         }
         
     function TO_deactivated() 
@@ -91,7 +79,7 @@ Domain Path: /languages/
             include (TOPATH . '/include/options.php'); 
             add_options_page('Taxonomy Terms Order', '<img class="menu_tto" src="'. TOURL .'/images/menu-icon.png" alt="" />' . __('Taxonomy Terms Order', 'taxonomy-terms-order'), 'manage_options', 'to-options', 'to_plugin_options');
                     
-            $options = get_option('tto_options');
+            $options = tto_get_settings();
             
             if(isset($options['capability']) && !empty($options['capability']))
                 $capability = $options['capability'];
@@ -102,7 +90,7 @@ Domain Path: /languages/
                 }
                 else
                     {
-                        $capability = 'install_plugins';  
+                        $capability = 'manage_options';  
                     } 
                     
              //put a menu within all custom types if apply
@@ -134,7 +122,7 @@ Domain Path: /languages/
 
     function TO_applyorderfilter($orderby, $args)
         {
-	        $options = get_option('tto_options');
+	        $options = tto_get_settings();
             
             //if admin make sure use the admin setting
             if (is_admin())
@@ -146,7 +134,7 @@ Domain Path: /languages/
                 }
             
             //if autosort, then force the menu_order
-            if ($options['autosort'] == 1)
+            if ($options['autosort'] == 1   &&  (!isset($args['ignore_term_order']) ||  (isset($args['ignore_term_order'])  &&  $args['ignore_term_order']  !== TRUE) ))
                 {
                     return 't.term_order';
                 }
@@ -191,6 +179,7 @@ Domain Path: /languages/
                         } 
                 }
                 
+            do_action('tto/update-order');
                 
             die();
         }
